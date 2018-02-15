@@ -16,6 +16,7 @@ import { DocumentsComponent } from './documents/documents.component';
 import { DocumentsListComponent } from './documents/documents-list/documents-list.component';
 import { DocumentsItemComponent } from './documents/documents-item/documents-item.component';
 import { DocumentsDetailComponent } from './documents/documents-detail/documents-detail.component';
+import { DropdownDirective } from './dropdown.directive';
 
 
 @NgModule({
@@ -33,7 +34,8 @@ import { DocumentsDetailComponent } from './documents/documents-detail/documents
     DocumentsComponent,
     DocumentsListComponent,
     DocumentsItemComponent,
-    DocumentsDetailComponent
+    DocumentsDetailComponent,
+    DropdownDirective
   ],
   imports: [
     BrowserModule
