@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header.component';
+import { ContactService} from "./contacts/contact.service";
 import { ContactsComponent } from './contacts/contacts.component';
 import { ContactListComponent } from './contacts/contact-list/contact-list.component';
 import { ContactsDetailComponent } from './contacts/contacts-detail/contacts-detail.component';
@@ -40,7 +41,7 @@ import { DropdownDirective } from './dropdown.directive';
   imports: [
     BrowserModule
   ],
-  providers: [],
+  providers: [ContactService, DocumentService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
