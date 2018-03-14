@@ -18,7 +18,8 @@ import { DocumentsListComponent } from './documents/documents-list/documents-lis
 import { DocumentsItemComponent } from './documents/documents-item/documents-item.component';
 import { DocumentsDetailComponent } from './documents/documents-detail/documents-detail.component';
 import { DropdownDirective } from './dropdown.directive';
-
+import {DocumentsService} from './documents/documents.service';
+import {MessagesService } from './messages/messasges.service';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,7 @@ import { DropdownDirective } from './dropdown.directive';
   imports: [
     BrowserModule
   ],
-  providers: [ContactService, DocumentService],
+  providers: [ContactService, DocumentsService, MessagesService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
