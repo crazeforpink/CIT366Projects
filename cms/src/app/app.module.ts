@@ -20,6 +20,10 @@ import { DocumentsDetailComponent } from './documents/documents-detail/documents
 import { DropdownDirective } from './dropdown.directive';
 import {DocumentsService} from './documents/documents.service';
 import {MessagesService } from './messages/messasges.service';
+import { DocumentViewComponent } from './documents/document-view/document-view.component';
+import { DocumentEditComponent } from './documents/document-edit/document-edit.component';
+import { ContactEditComponent } from './contacts/contact-edit/contact-edit.component';
+import {WindRefService} from "../app/wind-ref.service":
 
 @NgModule({
   declarations: [
@@ -37,12 +41,16 @@ import {MessagesService } from './messages/messasges.service';
     DocumentsListComponent,
     DocumentsItemComponent,
     DocumentsDetailComponent,
-    DropdownDirective
+    DropdownDirective,
+    DocumentViewComponent,
+    DocumentEditComponent,
+    ContactEditComponent,
+    //WindRefService
   ],
   imports: [
     BrowserModule
   ],
-  providers: [ContactService, DocumentsService, MessagesService],
+  providers: [ContactService, DocumentsService, MessagesService, WindRefService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

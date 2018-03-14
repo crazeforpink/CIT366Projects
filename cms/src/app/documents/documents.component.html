@@ -3,8 +3,9 @@
   <app-documents-list></app-documents-list>
 </div>
 <div class="col-md-6">
-<app-documents-detail
-  *ngIf="selectedDocument != null || selectedDocument !== undefined"
-                       [document]="selectedDocument"></app-documents-detail>
+<!--<app-documents-detail-->
+  <!--*ngIf="selectedDocument != null || selectedDocument !== undefined"-->
+                       <!--[document]="selectedDocument"></app-documents-detail>-->
+  <router-outlet></router-outlet>
 </div>
 </div>

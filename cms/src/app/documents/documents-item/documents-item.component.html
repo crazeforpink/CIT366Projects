@@ -1,10 +1,13 @@
-<!--<a class="list-group-item clearfix documentDiv" ></a>-->
-<div class="list-group-item clearfix documentDiv">
+<!--&lt;!&ndash;<a class="list-group-item clearfix documentDiv" ></a>&ndash;&gt;-->
+<!--<div class="list-group-item clearfix documentDiv">-->
 
-  <div class="pull-left">
-    <h3 class="list-group-item-heading">{{document?.name}}</h3>
-  </div>
+  <!--<div class="pull-left">-->
+    <!--<h3 class="list-group-item-heading">{{document?.name}}</h3>-->
+  <!--</div>-->
 
 
-</div>
+<!--</div>-->
 
+<a routerLinkActive="active" routerLink="/documents/{{document.id}}" class="list-group-item clearfix documentDiv" >
+  {{document?.name}}
+</a>
