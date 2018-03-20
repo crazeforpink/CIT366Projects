@@ -1,5 +1,7 @@
 <div class="list-group-item clearfix">
   <hr>
+  <div routerLinkActive = "active"
+       routerLink="/contacts/{{contact?.id}}">
   <div class="pull-left">
     <h3 class="list-group-item-heading">{{contact?.name}}</h3>
   </div>
@@ -8,4 +10,5 @@
      <img src="{{contact?.imageUrl}}" alt="{{contact?.name}}" class="img-responsive" style="max-height: 50px;">
   </span>
 
+</div>
 </div>
