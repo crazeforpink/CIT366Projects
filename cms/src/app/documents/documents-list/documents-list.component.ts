@@ -8,7 +8,7 @@ import { Subscription } from 'rxjs/Subscription';
   templateUrl: './documents-list.component.html',
   styleUrls: ['./documents-list.component.css']
 })
-export class DocumentsListComponent implements OnInit {
+export class DocumentsListComponent implements OnInit , OnDestroy{
   subscription: Subscription;
   //@Output() selectedDocumentEvent = new EventEmitter <Document>();
 
