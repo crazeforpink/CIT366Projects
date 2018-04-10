@@ -42,4 +42,7 @@ export class MessageListComponent implements OnInit {
   // onAddMessage(message: Message) {
   //   this.messages.push(message);
   // }
+  onAddMessage(message: Message){
+    this.messages.push(message);
+  }
 }

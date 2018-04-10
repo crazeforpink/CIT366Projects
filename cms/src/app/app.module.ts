@@ -1,7 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
-
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header.component';
 import { ContactService} from "./contacts/contact.service";
@@ -28,6 +27,8 @@ import {FormsModule} from "@angular/forms";
 import {AppRoutingModule} from "./app-routing.module";
 import {DndModule} from 'ng2-dnd';
 import { ContactsFilterPipe } from './contacts-filter.pipe';
+import {HttpModule} from '@angular/http';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -51,7 +52,7 @@ import { ContactsFilterPipe } from './contacts-filter.pipe';
     ContactsFilterPipe
   ],
   imports: [
-    BrowserModule, FormsModule, AppRoutingModule,DndModule.forRoot()
+    BrowserModule, FormsModule, AppRoutingModule,DndModule.forRoot(), HttpModule
   ],
   providers: [ContactService, DocumentsService, MessagesService, WindRefService],
   bootstrap: [AppComponent]

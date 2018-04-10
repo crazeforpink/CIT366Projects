@@ -3,7 +3,8 @@ import {Document} from './document.model';
 import {MOCKDOCUMENTS} from "./MOCKDOCUMENTS";
 import {Subject} from "rxjs/Subject";
 import { Subscription } from 'rxjs/Subscription';
-
+import 'rxjs/Rx';
+import { Http, Response } from '@angular/http';
 
 
 @Injectable()
@@ -12,13 +13,31 @@ export class DocumentsService implements OnDestroy, OnInit{
   documents: Document[] = [];
   maxDocumentId: number;
   subscription: Subscription;
-  @Output() documentSelectedEvent: EventEmitter<Document> = new EventEmitter<Document>();
-  @Output() documentChangedEvent: EventEmitter<Document[]> = new EventEmitter<Document[]>();
 
-  constructor() {
+  jsonUrl: string = 'https://test-eb48c.firebaseio.com/documents.json';
+
+  @Output() documentSelectedEvent: EventEmitter<Document> = new EventEmitter<Document>();
+  //@Output() documentChangedEvent: EventEmitter<Document[]> = new EventEmitter<Document[]>();
+
+  constructor(private http: Http) {
+  this.initDocuments();
     this.documents = MOCKDOCUMENTS;
     this.maxDocumentId = this.getMaxId();
   }
+
+  initDocuments(){
+    this.http.get(this.jsonUrl)
+      .map((response: Response) => {
+        const documents: Document[] = response.json();
+        return documents;
+      })
+      .subscribe((documents: Document[]) => {
+        this.documents = documents;
+        this.maxDocumentId = this.getMaxId();
+        this.documentListChangedEvent.next(this.getDocuments());
+      })
+  }
+
 
   getDocuments(): Document[] {
     return this.documents.slice();
@@ -35,7 +54,8 @@ export class DocumentsService implements OnDestroy, OnInit{
       document.id = String(++this.maxDocumentId);
 
       this.documents.push(document);
-      this.documentListChangedEvent.next(this.getDocuments());
+      this.storeDocuments();
+     // this.documentListChangedEvent.next(this.getDocuments());
     }
   }
 
@@ -44,7 +64,8 @@ export class DocumentsService implements OnDestroy, OnInit{
     if (original && updated && ( pos = this.documents.indexOf(original)) >= 0){
       updated.id = original.id;
       this.documents[pos] = updated;
-      this.documentListChangedEvent.next(this.getDocuments());
+      this.storeDocuments();
+      //this.documentListChangedEvent.next(this.getDocuments());
     }
   }
 
@@ -57,7 +78,8 @@ export class DocumentsService implements OnDestroy, OnInit{
       return;
     }
     this.documents.splice(pos, 1);
-    this.documentChangedEvent.emit(this.documents.slice());
+    this.storeDocuments();
+   // this.documentChangedEvent.emit(this.documents.slice());
   }
 
   getMaxId(): number{
@@ -71,6 +93,15 @@ export class DocumentsService implements OnDestroy, OnInit{
 
     return maxId;
   }
+
+  storeDocuments(){
+    // put request overwrites data
+    this.http.put(this.jsonUrl, JSON.stringify(this.documents))
+      .subscribe(() => {
+        this.documentListChangedEvent.next(this.getDocuments());
+      });
+  }
+
   ngOnInit(){
     this.subscription = this.documentListChangedEvent.subscribe();
   }
